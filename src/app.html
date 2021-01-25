@@ -1,0 +1,20 @@
+<template>
+  <require from="./styles.css"></require>
+  <require from="./application-list"></require>
+
+  <nav class="navbar navbar-light bg-light border-bottom fixed-top" role="navigation">
+    <a class="navbar-brand" href="#">
+      <i class="fa fa-user"></i>
+      <span>Application</span>
+    </a>
+  </nav>
+
+  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+
+  <div class="container-md">
+    <div class="row">
+      <application-list class="col-sm-5 col-md-4"></application-list>
+      <router-view class="col-sm-7 col-md-8"></router-view>
+    </div>
+  </div>
+</template>

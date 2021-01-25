@@ -1,0 +1,11 @@
+﻿<template>
+  <div class="application-list">
+    <div class="list-group">
+      <a repeat.for="application of applications" class="list-group-item list-group-item-action ${application.id === $parent.selectedId ? 'active' : ''}" route-href="route: applications; params.bind: {id:application.id}" click.delegate="$parent.select(application)">
+        <strong>${application.name} ${application.familyName}</strong><br>
+        <small>${application.eMailAddress}</small>
+      </a>
+    </div>
+  </div>
+</template>
+  
