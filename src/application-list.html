@@ -1,7 +1,8 @@
 ﻿<template>
+  <a route-href="route: newApplication" class="btn btn-primary" click.delegate="select(null)">New Application</a>
   <div class="application-list">
     <div class="list-group">
-      <a repeat.for="application of applications" class="list-group-item list-group-item-action ${application.id === $parent.selectedId ? 'active' : ''}" route-href="route: applications; params.bind: {id:application.id}" click.delegate="$parent.select(application)">
+      <a repeat.for="application of applications" class="list-group-item list-group-item-action ${application.id === $parent.selectedId ? 'active' : ''}" route-href="route: editApplication; params.bind: {id:application.id}" click.delegate="select(application)">
         <strong>${application.name} ${application.familyName}</strong><br>
         <small>${application.eMailAddress}</small>
       </a>

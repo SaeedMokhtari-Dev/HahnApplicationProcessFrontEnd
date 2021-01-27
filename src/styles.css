@@ -50,3 +50,12 @@ li.list-group-item > a {
 li.list-group-item.active > a {
   color: white;
 }
+
+.error-input {
+  border-color: red;
+  border-width: 2px;
+}
+
+.error-label {
+  color: red
+}

@@ -9,12 +9,12 @@
     </a>
   </nav>
 
-  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
+  <loading-indicator loading.bind="router.isNavigating || applicationService.isRequesting"></loading-indicator>
 
   <div class="container-md">
     <div class="row">
       <application-list class="col-sm-5 col-md-4"></application-list>
-      <router-view class="col-sm-7 col-md-8"></router-view>
+      <router-view class="col-sm-7 col-md-8" fallback="application-detail"></router-view>
     </div>
   </div>
 </template>

@@ -2,61 +2,77 @@
   <div class="card">
     <div class="card-header text-white bg-primary">
       Application
+      <span if.bind="application.id"> - Id: ${application.id}</span>
     </div>
     <div class="card-body">
-      <form role="form">
+      <form role="form" submit.delegate="submit()">
+        <input type="hidden" placeholder="name" class="form-control" value.bind="application.id" readonly="readonly">
         <div class="form-group row">
-          <label class="col-md-3 col-form-label">First Name</label>
+          <label class="col-md-3 col-form-label">Name</label>
           <div class="col-md-9">
-            <input type="text" placeholder="name" class="form-control" value.bind="application.name">
+            <input type="text" placeholder="name" class="form-control" value.bind="application.name & validate:rules">
           </div>
         </div>
 
         <div class="form-group row">
-          <label class="col-md-3 col-form-label">Last Name</label>
+          <label class="col-md-3 col-form-label">Family Name</label>
           <div class="col-md-9">
-            <input type="text" placeholder="family name" class="form-control" value.bind="application.familyName">
+            <input type="text" placeholder="family name" class="form-control" value.bind="application.familyName & validate:rules">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-md-3 col-form-label">Address</label>
           <div class="col-md-9">
-            <input type="text" placeholder="address" class="form-control" value.bind="application.address">
+            <input type="text" placeholder="address" class="form-control" value.bind="application.address & validate:rules">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-md-3 col-form-label">Country Of Origin</label>
           <div class="col-md-9">
-            <input type="text" placeholder="country of origin" class="form-control" value.bind="application.countryOfOrigin">
+            <input type="text" placeholder="country of origin" class="form-control" value.bind="application.countryOfOrigin & validate:rules">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-md-3 col-form-label">Email Address</label>
           <div class="col-md-9">
-            <input type="email" placeholder="email" class="form-control" value.bind="application.eMailAddress">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="col-md-3 col-form-label">Hired</label>
-          <div class="col-md-9">
-            <input type="checkbox" class="form-control" value.bind="application.hired">
+            <input type="email" placeholder="email" class="form-control" value.bind="application.eMailAddress & validate:rules">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-md-3 col-form-label">Age</label>
           <div class="col-md-9">
-            <input type="number" placeholder="Age" class="form-control" value.bind="application.age">
+            <input type="number" placeholder="Age" class="form-control" value.bind="application.age & validate:rules">
           </div>
         </div>
+
+        <div class="form-group row" if.bind="application.id" >
+          <label class="col-md-3 col-form-label">Hired</label>
+          <div class="col-md-9">
+            ${application.hired ? "Employed" : "UnEmployed"}
+          </div>
+        </div>
+        
+        <div class="form-group row" if.bind="application.id">
+          <label class="col-md-3 col-form-label">Created Date</label>
+          <div class="col-md-9">
+            ${application.createdDate}
+          </div>
+        </div>
+        
+        <div class="form-group row" if.bind="application.id">
+          <label class="col-md-3 col-form-label">lastUpdated</label>
+          <div class="col-md-9">
+            ${application.lastUpdated}
+          </div>
+        </div>
+        
+        <button class="btn btn-success float-right" type="submit" disabled.bind="!canSave">Send</button>
+        <button click.delegate="reset()" class="btn btn-danger float-right" disabled.bind="!canReset">Reset</button>
       </form>
-      <div>
-        <button class="btn btn-success float-right" click.delegate="save()" disabled.bind="!canSave">Save</button>
-      </div>
     </div>
   </div>
 </template>

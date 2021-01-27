@@ -1,4 +1,7 @@
-﻿interface Application {
+﻿import {IApplication} from "./IApplication";
+
+export class Application implements IApplication {
+  id: number;
   name: string;
   familyName: string;
   address: string;
@@ -6,7 +9,6 @@
   eMailAddress: string;
   age: number;
   hired: boolean;
-  id: number;
   createdDate: Date;
   lastUpdated: Date;
 }
