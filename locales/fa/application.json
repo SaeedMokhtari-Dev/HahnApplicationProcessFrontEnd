@@ -1,0 +1,14 @@
+﻿{
+  "application": {
+    "id": "Id",
+    "name": "Name",
+    "familyName": "Family Name",
+    "address": "Address",
+    "countryOfOrigin": "Country of Origin",
+    "eMailAddress": "EMail Address",
+    "age": "Age",
+    "hired": "Hired",
+    "createdDate": "Created Date",
+    "lastUpdated": "Last Updated"
+  }
+}

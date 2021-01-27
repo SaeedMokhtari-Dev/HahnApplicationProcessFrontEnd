@@ -16,6 +16,7 @@ const when = (condition, config, negativeConfig) =>
 // primary config:
 const outDir = path.resolve(__dirname, project.platform.output);
 const srcDir = path.resolve(__dirname, 'src');
+const localesDir = path.resolve(__dirname, 'locales');
 const baseUrl = '';
 
 const cssRules = [
@@ -31,7 +32,7 @@ const cssRules = [
 module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, host } = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
-    modules: [srcDir, 'node_modules'],
+    modules: [srcDir, localesDir, 'node_modules'],
 
     alias: {
       // https://github.com/aurelia/dialog/issues/387
@@ -222,6 +223,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
       { test: /\.(png|gif|jpg|cur)$/i, loader: 'url-loader', options: { limit: 8192 } },
       { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
       { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
+      { test: /.json$/i, loader: 'json-loader', type: 'javascript/auto' },
       // load these fonts normally, as files:
       { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
       { test: /environment\.json$/i, use: [
@@ -254,7 +256,8 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     })),
     ...when(!tests, new CopyWebpackPlugin({
       patterns: [
-        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } }
+        { from: 'static', to: outDir, globOptions: { ignore: ['.*'] } },
+        { from: 'locales', to: 'locales/' }
       ]
     })), // ignore dot (hidden) files
     ...when(analyze, new BundleAnalyzerPlugin()),
